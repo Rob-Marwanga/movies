@@ -10,6 +10,9 @@ Movie
 
 Director
   name: text
+  dob: text
+  photo_url: text
+  movie_id: integer
 
 Review
   rating: integer

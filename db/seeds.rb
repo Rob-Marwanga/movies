@@ -1,11 +1,64 @@
 Director.delete_all
 
-directors = ["Ron Howard", "Paul Greengrass", "Rian Johnson", "Robert Zemeckis",
-              "James Gunn", "Colin Trevorrow", "Bennett Miller",
-              "Steven Spielberg", "J.J. Abrams", "Clint Eastwood"]
+directors = [
+  { 
+    "name" => "Ron Howard",
+    "dob" => "March 1, 1954",
+    "photo_url" => "https://ia.media-imdb.com/images/M/MV5BMTkzMDczMjUxNF5BMl5BanBnXkFtZTcwODY1Njk5Mg@@._V1_.jpg"
+  },
+  { 
+    "name" => "Paul Greengrass",
+    "dob" => "August 13, 1955",
+    "photo_url" => "https://ia.media-imdb.com/images/M/MV5BMTY3NzM4NjA0Nl5BMl5BanBnXkFtZTgwMjE5NzA0OTE@._V1_SY1000_CR0,0,665,1000_AL_.jpg"
+  },
+   { 
+    "name" => "Rian Johnson",
+    "dob" => "December 17, 1973",
+    "photo_url" => "https://ia.media-imdb.com/images/M/MV5BMjA3MTQwNjYyM15BMl5BanBnXkFtZTcwNTI5ODUwNQ@@._V1_SY1000_CR0,0,694,1000_AL_.jpg"
+  },
+  { 
+    "name" => "Robert Zemeckis",
+    "dob" => "May 14, 1951",
+    "photo_url" => "https://ia.media-imdb.com/images/M/MV5BMTgyMTMzMDUyNl5BMl5BanBnXkFtZTcwODA0ODMyMw@@._V1_SY1000_CR0,0,665,1000_AL_.jpg"
+  },            
+  { 
+    "name" => "James Gunn",
+    "dob" => "August 5, 1966",
+    "photo_url" => "https://ia.media-imdb.com/images/M/MV5BMTYxMDgzMjA5OV5BMl5BanBnXkFtZTcwMzMwMTUxNw@@._V1_SY1000_CR0,0,747,1000_AL_.jpg"
+  },             
+  { 
+    "name" => "Colin Trevorrow",
+    "dob" => "September 13, 1976",
+    "photo_url" => "https://ia.media-imdb.com/images/M/MV5BMTQ4Nzk5MjI1OF5BMl5BanBnXkFtZTcwMTM5Mjk3OA@@._V1_.jpg"
+  },             
+  { 
+    "name" => "Bennett Miller",
+    "dob" => "December 30, 1966",
+    "photo_url" => "https://ia.media-imdb.com/images/M/MV5BODkxMjQ2MTYxOV5BMl5BanBnXkFtZTgwOTQwNjEwMzE@._V1_SY1000_CR0,0,666,1000_AL_.jpg"
+  },               
+  { 
+    "name" => "Steven Spielberg",
+    "dob" => "December 18, 1946",
+    "photo_url" => "https://ia.media-imdb.com/images/M/MV5BMTY1NjAzNzE1MV5BMl5BanBnXkFtZTYwNTk0ODc0._V1_.jpg"
+  },           
+  { 
+    "name" => "J.J. Abrams",
+    "dob" => "June 27, 1966",
+    "photo_url" => "https://ia.media-imdb.com/images/M/MV5BMTM4MTE0NTkzMV5BMl5BanBnXkFtZTcwODEwNDU0OQ@@._V1_SY1000_CR0,0,666,1000_AL_.jpg"
+  },   
+  { 
+    "name" => "Clint Eastwood",
+    "dob" => "May 31, 1930",
+    "photo_url" => "https://ia.media-imdb.com/images/M/MV5BMTg3MDc0MjY0OV5BMl5BanBnXkFtZTcwNzU1MDAxOA@@._V1_SY1000_CR0,0,740,1000_AL_.jpg"
+  }
+ ]
 
-for director in directors
-  Director.create name: director
+for director_data in directors
+  d= Director.new
+  d.name= director_data["name"]
+  d.dob= director_data["dob"]
+  d.photo_url= director_data["photo_url"]
+  d.save
 end
 
 Movie.delete_all
@@ -158,6 +211,7 @@ for movie_title in director_credits.keys
   the_movie.director_id = the_director.id
   the_movie.save
 end
+
 
 print "There are now #{Movie.count} movies.\n"
 print "There are now #{Director.count} directors.\n"

@@ -1,0 +1,20 @@
+
+<h1>Add a New Director</h1>
+
+<form action="/directors/create" class='col-sm-5'>
+
+  <p class="form-group">Name: <input class="form-control" type="text" name="name" placeholder="Enter a name..."></p>
+  <p class="form-group">Date of Birth: <input class="form-control" type="text" name="dob" placeholder="Enter a date of birth e.g September 22, 1980..."></p>
+  <p class="form-group">Photo URL:<input class="form-control" type="text" name="photo_url" placeholder="Enter a photo URL..."></p>
+  <p class="form-group">Movie ID:
+      <select class="form-control" name="movie_id">
+        <% for movie in Movie.all %>
+          <option value="<%= movie.id %>"><%= movie.title %></option>
+        <% end %>
+
+      </select>
+  </p>
+
+  <button class="btn btn-primary">Submit</button>
+
+</form>

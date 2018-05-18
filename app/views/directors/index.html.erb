@@ -1,0 +1,19 @@
+<div class="row justify-content-center">
+
+    <% for directors in Director.all.order("name") %>
+
+      <div class="col-sm-2 m-4">
+
+        <a href="/directors/<%= directors.id %>">
+
+        <% if directors.photo_url.blank? %>
+          <% directors.photo_url = "/blank_poster.png" %>
+        <% end %>
+
+        <img src="<%= directors.photo_url %>" class="movie-poster img-fluid">
+        <l><%= directors.name %></l>
+      </div>
+
+    <% end %>
+
+</div>

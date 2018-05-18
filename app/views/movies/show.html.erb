@@ -1,42 +1,84 @@
 <% movie_id = params[:id] %>
 <% movie = Movie.find_by(id: movie_id) %>
+<% director_id = params[:id] %>
+<% director = Director.find_by(id: director_id) %>
 
-<div class="row">
+<div class=“row”>
 
-  <div class="col-sm-6">
-    <h2>
-      <%= movie.title %>
-    </h2>
-  </div>
+ <div class=“col-sm-6">
+   <h2>
+     <%= movie.title %>
+   </h2>
+ </div>
 
 </div>
 
-<div class="row">
+<div class=“row”>
 
-  <div class="col-sm-3">
-    <img src="<%= movie.poster_url %>" class="img-fluid">
+ <div class=“col-sm-3">
+   <img src="<%= movie.poster_url %>" class=“img-fluid”>
 
-  </div>
+ </div>
 
-  <div class="col-sm-6">
-    <a href="/movies/<%= movie.id %>/delete" class="float-right">
-      <i class="fas fa-trash"></i>
-      Delete
-    </a>
-    <a href="/movies/<%= movie.id %>/edit" class="pr-5 float-right">
-      <i class="fas fa-pen-square"></i>
-      Edit This Movie
-    </a>
-
+ <div class=“col-sm-6”>
+   <p></p>
     <% director = Director.find_by(id: movie.director_id) %>
-    <% if director != nil %>
-      <p>
-        Directed by <%= director.name %>
-      </p>
-    <% end %>
-
-    <p class="lead">
-      <strong><%= movie.plot %></strong>
+       <% if director != nil %>
+         <p>
+           Directed by <a href= "/directors/<%= director.id %>">
+           <%= director.name %></a>
+         </p>
+        <% else %>
+         <p>Unknown Director</p>
+   <% end %>
+    <p class=“lead”>
+     <strong><%= movie.plot %></strong>
     </p>
-  </div>
+    
+   <a href="/movies/<%= movie.id %>/delete" class=“float-right”>
+     <i class= "fas fa-trash"></i>
+     Delete
+   </a>
+   
+   <a href= "/movies/<%= movie.id %>/edit" class=“pr-5 float-right”>
+     <i class= "fas fa-pen-square"></i>
+     Edit This Movie
+   </a>
+
+ </div>
+</div>
+
+
+<div class=“row”>
+ 
+ <% director = Director.find_by(id: movie.director_id) %>
+ <% if director != nil %>
+ 
+   <div class= "col-sm-6">
+       <p class="lead">
+       Other Movies Directed by <%= director.name %>
+       </p>
+   </div>  
+   
+   <div class=“row justify-content-left”>
+     <% for othermovies in Movie.all %>
+      <div class=“col-sm-2 m-4”>
+         <% if othermovies.director_id == director.id %>
+         <% if othermovies.id != movie.id %>
+         
+             <a href=<%= othermovies.id %>>
+                 <img src="<%= othermovies.poster_url %>" class="movie-poster height="200" width="200"">
+                
+          <% end %>
+          <% end %>
+      </div>
+     <% end %>
+     
+   </div>
+   
+ <% else %>
+   <p class=“lead”>
+   </p>
+ <% end %>
+ 
 </div>

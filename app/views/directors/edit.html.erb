@@ -1,0 +1,22 @@
+<% director = Director.find_by(id: params["id"]) %>
+
+<h1>Editing Director: <%= director.name %></h1>
+
+<form action="/directors/<%= director.id %>/update" class='col-sm-5'>
+  
+  <p class="form-group">Name: <input value="<%= director.name %>" autofocus class="form-control" name="name"></p>
+  <p class="form-group">Date of Birth: <input value="<%= director.dob %>" autofocus class="form-control" name="dob"></p>
+  <p class="form-group">Photo URL:<input value="<%= director.photo_url %>" autofocus class="form-control" name="photo_url"></p>
+  
+  <p class="form-group">Movie ID:
+      <select class="form-control" name="movie_id">
+        <% for movie in Movie.all %>
+          <option value="<%= movie.id %>"><%= movie.title %></option>
+        <% end %>
+
+      </select>
+  </p>
+
+  <button class="btn btn-primary">Update Director</button>
+
+</form>

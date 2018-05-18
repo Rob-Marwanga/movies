@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
 
   def destroy
-    Movie.delete(0)
+    Movie.delete(params["id"])
     redirect_to "/movies"
   end
 
@@ -15,14 +15,15 @@ class MoviesController < ApplicationController
   end
 
   def update
-    m = Movie.find_by(id: params["id"])
+    movie = Movie.find_by(id: params["id"])
 
-    m.update title: params["title"],
-             year: params["year"],
-             poster_url: params["poster_url"],
-             director_id: params["director_id"]
+    movie.update title: params["title"],
+                 year: params["year"],
+                 poster_url: params["poster_url"],
+                 director_id: params["director_id"]
+             
 
-    redirect_to "/movies/#{m.id}"
+    redirect_to "/movies", notice: "Movie updated."
   end
 
 end

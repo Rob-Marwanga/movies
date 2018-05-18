@@ -33,6 +33,10 @@ ActiveRecord::Schema.define(version: 0) do
     t.text "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text "dob"
+    t.text "photo_url"
+    t.integer "movie_id"
+    t.index ["movie_id"], name: "index_directors_on_movie_id"
   end
 
   create_table "movies", force: :cascade do |t|

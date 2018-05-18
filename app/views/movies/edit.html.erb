@@ -1,12 +1,12 @@
 <% movie = Movie.find_by(id: params["id"]) %>
 
-<h1>Editing Movie #<%= movie.id %></h1>
+<h1>Editing Movie: <%= movie.title %></h1>
 
-<form action="/movies/#{movie.id}" class='col-sm-5'>
+<form action="/movies/<%= movie.id %>/update" class='col-sm-5'>
 
-  <p class="form-group">Title: <input class="form-control" value="<%= movie.title %>" type="text" name="title" placeholder="Enter a title..."></p>
-  <p class="form-group">Year: <input class="form-control" value="<%= movie.year %>" type="text" name="year" placeholder="Enter a year..."></p>
-  <p class="form-group">Poster URL:<input class="form-control" value="<%= movie.poster_url %>" type="text" name="poster_url" placeholder="Enter a poster..."></p>
+  <p class="form-group">Title: <input value="<%= movie.title %>" autofocus class="form-control" name="title"></p>
+  <p class="form-group">Year: <input value="<%= movie.year %>" autofocus class="form-control" name="year"></p>
+  <p class="form-group">Poster URL:<input value="<%= movie.poster_url %>" autofocus class="form-control" name="poster_url"></p>
 
   <p class="form-group">Director ID:
       <select class="form-control" name="director_id">
